@@ -35,6 +35,9 @@ def MapsDataFrame(address, radius=15000, name=""):
     prettyDF['dist'] = dist
     prettyDF.drop('geometry', inplace=True, axis=1)
     prettyDF['restaurant'] = [x.lower() for x in prettyDF['name']]
+    
+    types = [", ".join(lists) for lists in prettyDF['types']]
+    prettyDF['types'] = types
      
     return prettyDF
     
@@ -55,11 +58,15 @@ def RetrieveCalories(ndbno):
     
     
     # HAHAAHA "idiomatic"
-    measure = dict(pd.DataFrame.from_dict(data).T['foods'])['report'][0]['measure']
-    info = dict(pd.DataFrame.from_dict(data).T['foods'])['report'][0]['nutrients'][0]
-    unit, value = info['unit'], info['value']
-    
-    return str(value) + " " + unit + " per " + measure
+    try:
+        measure = dict(pd.DataFrame.from_dict(data).T['foods'])['report'][0]['measure']
+        info = dict(pd.DataFrame.from_dict(data).T['foods'])['report'][0]['nutrients'][0]
+        unit, value = info['unit'], info['value']
+        
+        return str(value) + " " + unit + " per " + measure
+    except KeyError:
+        print("Error. Rate exceeded.")
+        return 0
     #return info
 
 # Use names from restaurant table to query USDA
@@ -77,16 +84,24 @@ def QueryUsdaEntries(restaurant):
     resp = requests.get(url=query)
     data = json.loads(resp.text)    
     
-    df = pd.DataFrame.from_dict(data['list']['item']).T
-    prettyDF = df.T
+    try:
+        df = pd.DataFrame.from_dict(data['list']['item']).T
+        prettyDF = df.T
+        
     
-    restaurant = [re.search("(.*?),", i).group(1).lower() for i in prettyDF['name']]
-    prettyDF['restaurant'] = restaurant
-    
-    energy = [RetrieveCalories(str(x)) for x in prettyDF['ndbno']]
-    prettyDF['energy'] = energy
-    
-    return prettyDF
+        restaurant = [re.search("((.*?),)|.*[A-Z] ", i).group().lower() for i in prettyDF['name']]
+        restaurant = [i.replace(",", "") for i in restaurant]
+        restaurant = [i.replace("([A-Z])( )", "\1") for i in restaurant]
+        prettyDF['restaurant'] = restaurant
+        
+        energy = [RetrieveCalories(str(x)) for x in prettyDF['ndbno']]
+        prettyDF['energy'] = energy
+        
+        return prettyDF
+    except KeyError:
+        print("Error. Rate exceeded.")
+        return 0
+        
      
 
          
@@ -95,3 +110,4 @@ if __name__ == "__main__":
     blah = MapsDataFrame(address="01003",radius=16000,name="burger")
     blah2 = RetrieveCalories("21141")
     blah3 = QueryUsdaEntries("burger king")
+    mcd = QueryUsdaEntries("McDonald's")
