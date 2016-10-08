@@ -67,7 +67,7 @@ h1 {
   background-repeat: no-repeat;
   background-size: cover !important;
   background-position: 50% 50%;
-  height: 40%;
+  height: 30%;
 }
 
 .hero_search {
@@ -80,4 +80,13 @@ h1 {
   padding: 20px;
   height: 150px;
   box-shadow: 5px 5px 5px #888;
+}
+.left{
+  float: left;
+  width: 50%;
+
+}
+.right{
+  float:right;
+  width: 50%;
 }

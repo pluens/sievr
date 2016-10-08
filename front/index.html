@@ -19,7 +19,7 @@
 <body style=" background-color:#F3F3F3;">
     <div class="hero-unit">
         <img id="hero_img" src="img/images.jpeg" style="">
-        <div class="container">
+    
             <div class="row">
                 <div class="col-md-12">
                     <div class="input-group" id="adv-search">
@@ -39,37 +39,57 @@
                                         <form class="form-horizontal" role=
                                         "form">
                                             <div class="form-group">
-                                                <label for="filter">Filter
-                                                by</label> <select class=
+                                                <label for="filter">With in</label> <select class=
                                                 "form-control">
                                                     <option selected value="0">
-                                                        All Snippets
+                                                        5 miles
                                                     </option>
                                                     <option value="1">
-                                                        Featured
+                                                        10 miles
                                                     </option>
                                                     <option value="2">
-                                                        Most popular
+                                                        25 miles
                                                     </option>
                                                     <option value="3">
-                                                        Top rated
+                                                        50 miles
                                                     </option>
                                                     <option value="4">
-                                                        Most commented
+                                                        100 miles
                                                     </option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for=
-                                                "contain">Author</label>
+                                                "contain">Dietary Restrictions</label>
                                                 <input class="form-control"
                                                 type="text">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="contain">Contains
-                                                the words</label> <input class=
-                                                "form-control" type="text">
-                                            </div><button class=
+                                            <div class="">
+                                                <label for=
+                                                "contain">Max Price</label>
+                                                <input type="range" min="0" max="100" value="50" step="1" onchange="showValue(this.value)" />
+                                                <span id="range">50</span>
+                                                <script type="text/javascript">
+                                                function showValue(newValue)
+                                                {
+                                                	document.getElementById("range").innerHTML=newValue;
+                                                }
+                                                </script>
+                                            </div>
+                                            <div class="">
+                                                <label for=
+                                                "contain">calorie count</label>
+                                                <input type="range" min="0" max="3000" value="50" step="1" onchange="showValue2(this.value)" />
+                                                <span id="calrange">50</span>
+                                                <script type="text/javascript">
+                                                function showValue2(newValue)
+                                                {
+                                                	document.getElementById("calrange").innerHTML=newValue;
+                                                }
+                                                </script>
+<br>
+
+                                            <button class=
                                             "btn btn-primary" type=
                                             "submit"><span aria-hidden="true"
                                             class=
