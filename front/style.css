@@ -1,0 +1,20 @@
+#hero_img{
+  margin-left:40%;
+  margin-top: 5%;
+}
+.container{
+  color:pink;
+}
+h1{
+  color:blue;
+}
+.hero{
+  background-image: url('img/hero.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40%;
+
+}
+.hero_search{
+  margin-left:40%;
+}
