@@ -66,7 +66,7 @@ def RetrieveCalories(ndbno):
         return str(value) + " " + unit + " per " + measure
     except KeyError:
         print("Error. Rate exceeded.")
-        return 0
+        return pd.DataFrame()
     #return info
 
 # Use names from restaurant table to query USDA
@@ -100,7 +100,7 @@ def QueryUsdaEntries(restaurant):
         return prettyDF
     except KeyError:
         print("Error. Rate exceeded.")
-        return 0
+        return pd.DataFrame()
         
      
 

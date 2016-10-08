@@ -9,26 +9,35 @@ Part 3 in pipeline: Tie together the restaurant finder and menu retriever into
 """
 
 import pandas as pd
-from buildTable import *
+import buildTable
 import argparse
 
-def mainTable():
+
+
+def mainTable(restaurantTable):
+
+    itemTable = pd.DataFrame()
+    visitedlist = []
+    for restaurant in restaurantTable['restaurant']:
+        if restaurant not in visitedlist:
+            print(restaurant) # Comment out when done
+            itemTable = itemTable.append(buildTable.QueryUsdaEntries(restaurant))
+        visitedlist.append(restaurant)
+    return itemTable
+    
+    def Joins(restaurantTable, bigtable):
+        result = pd.merge(restaurantTable, bigTable, on=['restaurant'], how="outer")
+        return result
+    
+if __name__ == "__main__":
+    
+    
     ADDRESS = "01003"
     RADIUS = 17000
     NAME = "burger"
     
-    restaurantTable = MapsDataFrame(address=ADDRESS, radius=RADIUS, name=NAME)
-    itemTable = pd.DataFrame()
-    visitedlist = []
-    for restaurant in restaurantTable['restaurant']:
-        print(restaurant) # Comment out when done
-        if restaurant not in visitedlist:
-            itemTable = itemTable.append(QueryUsdaEntries(restaurant))
-        visitedlist.append(restaurant)
-    return itemTable
-    
-    
-    
-if __name__ == "__main__":
-    BIGTABLE = mainTable()
+    restaurantTable = buildTable.MapsDataFrame(address=ADDRESS, radius=RADIUS, name=NAME)
+    BIGTABLE = mainTable(restaurantTable = restaurantTable)
     print(BIGTABLE)
+    joined = Joins(restaurantTable = restaurantTable, bigtable = BIGTABLE)
+    print(joined)
