@@ -13,7 +13,7 @@ background-image: url('img/hero.jpeg');
 background-repeat: no-repeat;
 background-size: cover !important;
    background-position: 50% 50%;
-   
+
 height: 40%
     }
 .hero_search{
@@ -26,3 +26,8 @@ height: 40%
     padding: 5px 32px;
     text-align: center;
 }
+.box {
+  border-radius: 20px;
+  background: #73AD21;
+  padding: 20px;
+  height: 150px; }
