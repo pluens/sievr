@@ -34,6 +34,7 @@ def MapsDataFrame(address, radius=15000, name=""):
     dist = [vincenty((mylat,mylong), (prettyDF['lat'][i], prettyDF['long'][i])).miles for i in range(len(prettyDF))]
     prettyDF['dist'] = dist
     prettyDF.drop('geometry', inplace=True, axis=1)
+    prettyDF['restaurant'] = [x.lower() for x in prettyDF['name']]
      
     return prettyDF
     
