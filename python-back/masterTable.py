@@ -21,13 +21,15 @@ def mainTable(restaurantTable):
     for restaurant in restaurantTable['restaurant']:
         if restaurant not in visitedlist:
             print(restaurant) # Comment out when done
-            itemTable = itemTable.append(buildTable.QueryUsdaEntries(restaurant))
+            temp = buildTable.QueryUsdaEntries(restaurant)
+            if not temp.empty:
+                itemTable = itemTable.append(temp)
         visitedlist.append(restaurant)
     return itemTable
     
-    def Joins(restaurantTable, bigtable):
-        result = pd.merge(restaurantTable, bigTable, on=['restaurant'], how="outer")
-        return result
+def Joins(restaurantTable, bigtable):
+    result = pd.merge(restaurantTable, bigTable, on=['restaurant'], how="outer")
+    return result
     
 if __name__ == "__main__":
     
@@ -39,5 +41,5 @@ if __name__ == "__main__":
     restaurantTable = buildTable.MapsDataFrame(address=ADDRESS, radius=RADIUS, name=NAME)
     BIGTABLE = mainTable(restaurantTable = restaurantTable)
     print(BIGTABLE)
-    joined = Joins(restaurantTable = restaurantTable, bigtable = BIGTABLE)
+    joined = pd.merge(restaurantTable, BIGTABLE, on='restaurant', how="outer")
     print(joined)
