@@ -2,19 +2,20 @@
   margin-left:40%;
   margin-top: 5%;
 }
-.container{
-  color:pink;
+body{
+  background-color: #F3F3F3;
 }
 h1{
   color:blue;
 }
-.hero{
-  background-image: url('img/hero.jpeg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 40%;
-
-}
+.hero-unit {
+background-image: url('img/hero.jpeg');
+background-repeat: no-repeat;
+background-size: cover !important;
+   background-position: 50% 50%;
+   
+height: 40%
+    }
 .hero_search{
   margin-left:50%;
 }
@@ -24,4 +25,4 @@ h1{
     color: white;
     padding: 5px 32px;
     text-align: center;
-;}
+}
