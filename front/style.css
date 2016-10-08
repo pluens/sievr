@@ -18,3 +18,10 @@ h1{
 .hero_search{
   margin-left:50%;
 }
+.hero_btn{
+      background-color: red; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 32px;
+    text-align: center;
+;}
