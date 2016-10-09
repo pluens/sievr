@@ -1,13 +1,4 @@
 
-
-
-
-
-
-@media (min-width: 100px) {
-    .container{
-        max-width: 1500px;
-    }
 }
 
 #hero_img {
@@ -92,7 +83,7 @@ h1 {
   border-radius: 7px;
   background: #FFF;
   padding: 20px;
-  height: 150px;
+  height: auto;
   box-shadow: 5px 5px 5px #888;
   width: auto;
   align-items: flex-end;
