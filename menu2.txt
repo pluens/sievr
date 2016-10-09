@@ -1,0 +1,5 @@
+{"name":"Greek Pizza with Olive Oil","price":"16","calories":"555"}
+{"name":"Greek Burger with Bacon","price":"7","calories":"678"}
+{"name":"Greek Salad with Cheese","price":"5","calories":"123"}
+{"name":"Greek Cookie with Candy ","price":"2","calories":"420"}
+{"name":"Greek Pizza with Olive Oil","price":"16","calories":"555"}

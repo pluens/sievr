@@ -1,0 +1,7 @@
+Input: Json strings in txt files through commandline arguments. Each file is a menu, each line is and item in Json format.
+output: print to screen
+Menu object created from Json input
+Menu reports (currently only store Id and rating) of all menus (files) in Json String.
+
+TODO:
+Input should be from Edridge, output should be to front end.
