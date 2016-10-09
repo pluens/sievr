@@ -108,9 +108,35 @@
             <div class="checkbox disabled">
               <label><input disabled type="checkbox" value="">Option 3</label>
             </div>
+
           </div>
         </div>
+        <div class="">
+            <label for=
+            "contain">Max Price</label>
+            <input type="range" min="0" max="100" value="50" step="1" onchange="showValue(this.value)" />
+            <span id="range">50</span>
+            <script type="text/javascript">
+            function showValue(newValue)
+            {
+              document.getElementById("range").innerHTML=newValue;
+            }
+            </script>
+        </div>
+        <div class="">
+            <label for=
+            "contain">calorie count</label>
+            <input type="range" min="0" max="3000" value="50" step="1" onchange="showValue2(this.value)" />
+            <span id="calrange">50</span>
+            <script type="text/javascript">
+            function showValue2(newValue)
+            {
+              document.getElementById("calrange").innerHTML=newValue;
+            }
+            </script>
+<br>
       </div>
+</div>
     </div>
 
       <div class="col-xs-1"></div>
