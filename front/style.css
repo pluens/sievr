@@ -97,6 +97,15 @@ h1 {
   width: auto;
   align-items: flex-end;
 }
+.box {
+  border-radius: 7px;
+  background: #FFF;
+  padding: 20px;
+  height: 30vh;
+  box-shadow: 5px 5px 5px #888;
+  width: auto;
+  align-items: flex-end;
+}
 
 .right{
   float:right;

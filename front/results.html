@@ -2,38 +2,6 @@
 <html>
 <head>
 
-    <script>
-      var map;
-
-      function initialize() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 2,
-          center: new google.maps.LatLng(2.8,-187.3),
-          mapTypeId: 'terrain'
-        });
-
-        // Create a <script> tag and set the USGS URL as the source.
-        var script = document.createElement('script');
-        // (In this example we use a locally stored copy instead.)
-        // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
-        script.src = 'https://developers.google.com/maps/documentation/javascript/tutorials/js/earthquake_GeoJSONP.js';
-        document.getElementsByTagName('head')[0].appendChild(script);
-      }
-
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      window.eqfeed_callback = function(results) {
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-        }
-      }
-    </script>
-
   <script src=
   "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
   </script>
@@ -111,9 +79,17 @@
   <br>
   <br>
   <div id="map"></div>
-
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 42.3732, lng:-72.5199 },
+      zoom: 13
+    });
+  }
+</script>
   <script async defer src=
-  "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjfD6qGpZ1rJEE6lO26OC1QQvLLsHRXI&callback=initMap">
+  "https://maps.googleapis.com/maps/api/js?key=AIzaSyCGSfqBjM934ts-lmvbxnTiR0Cf1cNVgd4&callback=initMap">
   </script>
     <div class="row">
       <div class="col-xs-3">
@@ -132,134 +108,31 @@
             <div class="checkbox disabled">
               <label><input disabled type="checkbox" value="">Option 3</label>
             </div>
-            <label for="filter">With in</label> <select class=
-            "form-control">
-            <option selected value="0">
-              5 miles
-            </option>
-            <option value="1">
-              10 miles
-            </option>
-            <option value="2">
-              25 miles
-            </option>
-            <option value="3">
-              50 miles
-            </option>
-            <option value="4">
-              100 miles
-            </option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="contain">Dietary Restrictions</label>
-          <input class="form-control" type="text">
-        </div>
           </div>
         </div>
-        </div>
       </div>
+    </div>
+
       <div class="col-xs-1"></div>
       <div class="col-xs-6">
         <div class="box" style=" height:auto; align-items:center;">
-          <table class="pure-table">
+          <table class="table">
             <thead>
               <tr>
-                <th>lorem</th>
-                <th>ipsum</th>
-                <th>dolor</th>
+                <th>Location</th>
+                <th>Dietary Restrictions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>sit</td>
                 <td>amet</td>
-                <td>consectetur</td>
               </tr>
               <tr>
                 <td>adipisicing</td>
                 <td>elit</td>
-                <td>sed</td>
               </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-                <td>tempor</td>
-              </tr>
-              <tr>
-                <td>sit</td>
-                <td>amet</td>
-                <td>consectetur</td>
-              </tr>
-              <tr>
-                <td>adipisicing</td>
-                <td>elit</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-              </tr>
-              <tr>
-                <td>sit</td>
-                <td>amet</td>
-                <td>consectetur</td>
-              </tr>
-              <tr>
-                <td>adipisicing</td>
-                <td>elit</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-                <td>tempor</td>
-              </tr>
-              <tr>
-                <td>sit</td>
-                <td>amet</td>
-                <td>consectetur</td>
-              </tr>
-              <tr>
-                <td>adipisicing</td>
-                <td>elit</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-                <td>tempor</td>
-              </tr>
-              <tr>
-                <td>sit</td>
-                <td>amet</td>
-                <td>consectetur</td>
-              </tr>
-              <tr>
-                <td>adipisicing</td>
-                <td>elit</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-                <td>tempor</td>
-              </tr>
-              <tr>
-                <td>sit</td>
-                <td>amet</td>
-                <td>consectetur</td>
-              </tr>
-              <tr>
-                <td>adipisicing</td>
-                <td>elit</td>
-                <td>sed</td>
-              </tr>
-              <tr>
-                <td>do</td>
-                <td>eiusmod</td>
-                <td>tempor</td>
-              </tr>
+
             </tbody>
           </table>
         </div>
