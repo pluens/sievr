@@ -1,172 +1,149 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="style.css" rel="stylesheet">
-    <style>
-@import 'https://fonts.googleapis.com/css?family=Roboto|Slabo+27px';
-</style>
-    <title></title>
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-    <!-- Latest compiled and minified CSS -->
-    <link crossorigin="anonymous" href=
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity=
-    "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    rel="stylesheet"><!-- Optional theme -->
-    <link crossorigin="anonymous" href=
-    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-    integrity=
-    "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-    rel="stylesheet"><!-- Latest compiled and minified JavaScript -->
+
+    <script>
+      var map;
+
+      function initialize() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8,-187.3),
+          mapTypeId: 'terrain'
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // (In this example we use a locally stored copy instead.)
+        // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        script.src = 'https://developers.google.com/maps/documentation/javascript/tutorials/js/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    </script>
+
+  <script src=
+  "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  </script>
+  <link href="style.css" rel="stylesheet">
+  <style>
+  @import 'https://fonts.googleapis.com/css?family=Roboto|Slabo+27px';
+  </style>
+  <title></title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <!-- Latest compiled and minified CSS -->
+  <link crossorigin="anonymous" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity=
+  "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  rel="stylesheet"><!-- Optional theme -->
+  <link crossorigin="anonymous" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+  integrity=
+  "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+  rel="stylesheet"><!-- Latest compiled and minified JavaScript -->
+  <link href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css" rel=
+  "stylesheet">
 </head>
 <body style=" background-color:#F3F3F3;">
-            <div class="row">
-                <div class="col-md-12" style="background-color: #FFF;">
-                    <div class="input-group" id="adv-search">
-                        <input class="form-control" placeholder=
-                        "Search for snippets" type="text">
-                        <div class="input-group-btn">
-                            <div class="btn-group" role="group">
-                                <div class="dropdown dropdown-lg">
-                                    <button aria-expanded="false" class=
-                                    "btn btn-default dropdown-toggle"
-                                    data-toggle="dropdown" type=
-                                    "button"><span class=
-                                    "caret"></span></button>
-                                    <div class=
-                                    "dropdown-menu dropdown-menu-right" role=
-                                    "menu">
-                                        <form class="form-horizontal" role=
-                                        "form">
-                                            <div class="form-group">
-                                                <label for="filter">With in</label> <select class=
-                                                "form-control">
-                                                    <option selected value="0">
-                                                        5 miles
-                                                    </option>
-                                                    <option value="1">
-                                                        10 miles
-                                                    </option>
-                                                    <option value="2">
-                                                        25 miles
-                                                    </option>
-                                                    <option value="3">
-                                                        50 miles
-                                                    </option>
-                                                    <option value="4">
-                                                        100 miles
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for=
-                                                "contain">Dietary Restrictions</label>
-                                                <input class="form-control"
-                                                type="text">
-                                            </div>
-                                            <div class="">
-                                                <label for=
-                                                "contain">Max Price</label>
-                                                <input type="range" min="0" max="100" value="50" step="1" onchange="showValue(this.value)" />
-                                                <span id="range">50</span>
-                                                <script type="text/javascript">
-                                                function showValue(newValue)
-                                                {
-                                                	document.getElementById("range").innerHTML=newValue;
-                                                }
-                                                </script>
-                                            </div>
-                                            <div class="">
-                                                <label for=
-                                                "contain">calorie count</label>
-                                                <input type="range" min="0" max="3000" value="50" step="1" onchange="showValue2(this.value)" />
-                                                <span id="calrange">50</span>
-                                                <script type="text/javascript">
-                                                function showValue2(newValue)
-                                                {
-                                                	document.getElementById("calrange").innerHTML=newValue;
-                                                }
-                                                </script>
-                                                <br>
-
-                                            <button class=
-                                            "btn btn-primary" type=
-                                            "submit"><span aria-hidden="true"
-                                            class=
-                                            "glyphicon glyphicon-search"></span></button>
-                                        </form>
-                                    </div>
-                                </div><button class="btn btn-primary" type=
-                                "button"><span aria-hidden="true" class=
-                                "glyphicon glyphicon-search"></span></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12" style="background-color: #FFF;">
+      <div class="input-group" id="adv-search">
+        <input class="form-control" placeholder="Search for snippets" type=
+        "text">
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+              <button aria-expanded="false" class=
+              "btn btn-default dropdown-toggle" data-toggle="dropdown" type=
+              "button"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="filter">With in</label> <select class=
+                    "form-control">
+                      <option selected value="0">
+                        5 miles
+                      </option>
+                      <option value="1">
+                        10 miles
+                      </option>
+                      <option value="2">
+                        25 miles
+                      </option>
+                      <option value="3">
+                        50 miles
+                      </option>
+                      <option value="4">
+                        100 miles
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="contain">Dietary Restrictions</label>
+                    <input class="form-control" type="text">
+                  </div>
+                  <br>
+                    <button class="btn btn-primary" type=
+                    "submit"><span aria-hidden="true" class=
+                    "glyphicon glyphicon-search"></span></button>
+                  </div>
+                </form>
+              </div>
+            </div><button class="btn btn-primary" type=
+            "button"><span aria-hidden="true" class=
+            "glyphicon glyphicon-search"></span></button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div id="map"></div>
 
-
-        <div id="map"></div>
-        <script>
-
-     // This example displays a marker at the center of Australia.
-     // When the user clicks the marker, an info window opens.
-
-     function initMap() {
-       var uluru = {lat: -25.363, lng: 131.044};
-       var map = new google.maps.Map(document.getElementById('map'), {
-         zoom: 4,
-         center: uluru
-       });
-
-       var contentString = '<div id="content">'+
-           '<div id="siteNotice">'+
-           '</div>'+
-           '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-           '<div id="bodyContent">'+
-           '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-           'sandstone rock formation in the southern part of the '+
-           'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-           'south west of the nearest large town, Alice Springs; 450&#160;km '+
-           '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-           'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-           'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-           'Aboriginal people of the area. It has many springs, waterholes, '+
-           'rock caves and ancient paintings. Uluru is listed as a World '+
-           'Heritage Site.</p>'+
-           '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-           'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-           '(last visited June 22, 2009).</p>'+
-           '</div>'+
-           '</div>';
-
-       var infowindow = new google.maps.InfoWindow({
-         content: contentString
-       });
-
-       var marker = new google.maps.Marker({
-         position: uluru,
-         map: map,
-         title: 'Uluru (Ayers Rock)'
-       });
-       marker.addListener('click', function() {
-         infowindow.open(map, marker);
-       });
-     }
-   </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjfD6qGpZ1rJEE6lO26OC1QQvLLsHRXI&callback=initMap"
-        async defer></script>
-<div class="container">
-        <br>
-        <br>
-        <br>
-
-      <!--  <div class="container">
-          <h1 style=" text-align: center; ">Test</h1>
-          <table class="table table-striped">
+    <script async defer src=
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjfD6qGpZ1rJEE6lO26OC1QQvLLsHRXI&callback=initMap">
+    </script>
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="box" style=" height: 50vh;">
+          <div class="navbar navbar-fixed-top"></div><button class=
+          "btn btn-link" data-target="#demo" data-toggle="collapse" style="padding-left:2vw;"
+          type="button">Dietary Restrictions</button>
+          <div class="collapse" id="demo">
+            <div class="sel">
+            <div class="checkbox">
+              <label><input type="checkbox" value="">Option 1</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="">Option 2</label>
+            </div>
+            <div class="checkbox disabled">
+              <label><input disabled type="checkbox" value="">Option 3</label>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-xs-1"></div>
+      <div class="col-xs-6">
+        <div class="box" style=" height:auto; align-items:center;">
+          <table class="pure-table">
             <thead>
               <tr>
                 <th>lorem</th>
@@ -190,18 +167,89 @@
                 <td>eiusmod</td>
                 <td>tempor</td>
               </tr>
+              <tr>
+                <td>sit</td>
+                <td>amet</td>
+                <td>consectetur</td>
+              </tr>
+              <tr>
+                <td>adipisicing</td>
+                <td>elit</td>
+                <td>sed</td>
+              </tr>
+              <tr>
+                <td>do</td>
+                <td>eiusmod</td>
+              </tr>
+              <tr>
+                <td>sit</td>
+                <td>amet</td>
+                <td>consectetur</td>
+              </tr>
+              <tr>
+                <td>adipisicing</td>
+                <td>elit</td>
+                <td>sed</td>
+              </tr>
+              <tr>
+                <td>do</td>
+                <td>eiusmod</td>
+                <td>tempor</td>
+              </tr>
+              <tr>
+                <td>sit</td>
+                <td>amet</td>
+                <td>consectetur</td>
+              </tr>
+              <tr>
+                <td>adipisicing</td>
+                <td>elit</td>
+                <td>sed</td>
+              </tr>
+              <tr>
+                <td>do</td>
+                <td>eiusmod</td>
+                <td>tempor</td>
+              </tr>
+              <tr>
+                <td>sit</td>
+                <td>amet</td>
+                <td>consectetur</td>
+              </tr>
+              <tr>
+                <td>adipisicing</td>
+                <td>elit</td>
+                <td>sed</td>
+              </tr>
+              <tr>
+                <td>do</td>
+                <td>eiusmod</td>
+                <td>tempor</td>
+              </tr>
+              <tr>
+                <td>sit</td>
+                <td>amet</td>
+                <td>consectetur</td>
+              </tr>
+              <tr>
+                <td>adipisicing</td>
+                <td>elit</td>
+                <td>sed</td>
+              </tr>
+              <tr>
+                <td>do</td>
+                <td>eiusmod</td>
+                <td>tempor</td>
+              </tr>
             </tbody>
           </table>
-        </div>-->
-
-
         </div>
-         </div>
-    <script src=
-    "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    </script>
+      </div>
+    </div>
+
     <script src=
     "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
     </script>
+  </div>
 </body>
 </html>

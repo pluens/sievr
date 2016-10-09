@@ -4,12 +4,18 @@
 
 
 
-
+@media (min-width: 100px) {
+    .container{
+        max-width: 1500px;
+    }
+}
 
 #hero_img {
   margin-left: 45%;
   margin-top: 5%;
   margin-bottom: 1%;
+
+
 }
 
 .dropdown.dropdown-lg .dropdown-menu {
@@ -56,7 +62,6 @@
   .dropdown.dropdown-lg {
     position: static !important;
   }
-z
   .dropdown.dropdown-lg .dropdown-menu {
     min-width: 500px;
   }
@@ -68,7 +73,6 @@ body {
 }
 
 h1 {
-
   font-family: 'Slabo 27px', serif;
 }
 
@@ -91,12 +95,18 @@ h1 {
   height: 150px;
   box-shadow: 5px 5px 5px #888;
   width: auto;
+  align-items: flex-end;
 }
-.left{
-  float: left;
-  width: 50%;
+.box_1 {
+  border-radius: 7px;
+  background: #FFF;
+  padding: 20px;
+  height: 30vh;
+  box-shadow: 5px 5px 5px #888;
+  width: auto;
+  align-items: flex-end;
+}
 
-}
 .right{
   float:right;
   width: 50%;
@@ -107,12 +117,19 @@ h1 {
 }
 
       #map {
-        height: 100%;
-        margin-left: 17.5%;
+        height: 350px;
+        margin-bottom:5vh ;
         background: #FFF;
         padding: 0px;
-        height: 50vh;
         box-shadow: 5px 5px 5px #888;
-        width: 65%;
+        width: 100%;
 
       }
+
+h1{
+  font-family:  ,sans-serif;
+}
+.sel{
+  padding-left: 3vw;
+}
+/* centered columns styles */
