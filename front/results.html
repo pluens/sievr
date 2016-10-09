@@ -111,33 +111,35 @@
 
           </div>
         </div>
-        <div class="">
-            <label for=
-            "contain">Max Price</label>
-            <input type="range" min="0" max="100" value="50" step="1" onchange="showValue(this.value)" />
-            <span id="range">50</span>
-            <script type="text/javascript">
-            function showValue(newValue)
-            {
-              document.getElementById("range").innerHTML=newValue;
-            }
-            </script>
-        </div>
-        <div class="">
-            <label for=
-            "contain">calorie count</label>
-            <input type="range" min="0" max="3000" value="50" step="1" onchange="showValue2(this.value)" />
-            <span id="calrange">50</span>
-            <script type="text/javascript">
-            function showValue2(newValue)
-            {
-              document.getElementById("calrange").innerHTML=newValue;
-            }
-            </script>
-<br>
-      </div>
-</div>
+        <div class="navbar navbar-fixed-top"></div><button class=
+        "btn btn-link" data-target="#demo1" data-toggle="collapse" style="padding-left:2vw;"
+        type="button">Distance</button>
+          <div class="sel">
+          <div class="collapse" id="demo1">
+            <label for="filter"></label> <select class=
+            "form-control">
+            <option selected value="0">
+                5 miles
+            </option>
+            <option value="1">
+                10 miles
+            </option>
+            <option value="2">
+                25 miles
+            </option>
+            <option value="3">
+                50 miles
+            </option>
+            <option value="4">
+                100 miles
+            </option>
+        </select>
     </div>
+
+        </div>
+      </div>
+
+</div>
 
       <div class="col-xs-1"></div>
       <div class="col-xs-6">
